@@ -1,0 +1,206 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!--<ion-toolbar>
+    <ion-buttons slot="secondary">
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>MUT</ion-title>
+  </ion-toolbar>-->
+  <ion-toolbar>
+    <div class="top-bar">
+      <div class="profile">
+        <div class="profile-frm">
+            <div class="profile-image">
+                <img src="../../assets/images/tyc.jpg">
+            </div>
+        </div>
+        <div class="profile-name">
+            <div class="p-name">Hello</div>
+            <div class="role">Mncedisi Hlonzi</div>
+        </div>
+    </div>
+    <div class="bell-icon">
+      <i class='bx bx-bell'></i>
+  </div>
+  <ion-button id="top-button" shape="round" routerLink="/ai">
+    <ion-icon name="analytics-sharp"></ion-icon>
+  </ion-button>
+  </div>
+
+  <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+
+  
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <swiper-container slides-per-view="3" speed="500" pagination="true" loop="true" css-mode="true">
+
+    <swiper-slide>
+      <img src="../../assets/images/mut1.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../assets/images/mut4.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../assets/images/mut6.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../assets/images/mut5.jpg" alt="">
+    </swiper-slide>
+    
+  </swiper-container>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>MUT App AI</ion-card-title>
+      <ion-card-subtitle>Your Personalized School Assistant.</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Get instant answers, personalized tips, easy scheduling, and insightful analytics.
+    </ion-card-content>
+  
+    <ion-button id="card-button" shape="round" routerLink="/ai">
+      Ask IA
+      <ion-icon slot="end" name="analytics-sharp"></ion-icon>
+    </ion-button>
+  </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-up-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <!--<ion-fab-button routerLink="/profile">
+        <ion-icon name="person-sharp"></ion-icon>
+      </ion-fab-button>-->
+      <ion-fab-button (click)="presentPopover($event)">
+        <ion-icon name="person-sharp"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/settingss">
+        <ion-icon name="settings-sharp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" class="center-popover">
+    <ng-template>
+      <ion-content class="ion-padding">
+
+            <ion-list lines="none" id="popoverlist">
+              <ion-item>
+                <ion-icon aria-hidden="true" name="person-sharp" slot="start" class="popover-icons"></ion-icon>
+                <ion-label>Student</ion-label>
+                <ion-button slot="end" shape="round">
+                  <ion-icon name="enter-outline" slot="end"></ion-icon>
+                  Login
+                </ion-button>
+              </ion-item>
+              <ion-item>
+                <ion-icon aria-hidden="true" name="person-sharp" slot="start" class="popover-icons"></ion-icon>
+                <ion-label>SRC Office</ion-label>
+                <ion-button slot="end" shape="round">
+                  <ion-icon name="enter-outline" slot="end"></ion-icon>
+                  Login
+                </ion-button>
+              </ion-item>
+              <ion-item>
+                <ion-icon aria-hidden="true" name="person-sharp" slot="start" class="popover-icons"></ion-icon>
+                <ion-label>MUT Office</ion-label>
+                <ion-button slot="end" shape="round">
+                  <ion-icon name="enter-outline" slot="end"></ion-icon>
+                  Login
+                </ion-button>
+              </ion-item>
+            </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+  
+
+
+
+
+  <ion-card id="list-card">
+    <ion-card-header>
+      <ion-card-title>Academics <ion-icon name="pulse-sharp"></ion-icon></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-list lines="none" id="list">
+        <ion-item routerLink="/faculties"> 
+          <ion-icon aria-hidden="true" name="layers-sharp" slot="start" class="icons"></ion-icon>
+          <ion-label>Faculties</ion-label>
+        </ion-item>
+        <ion-item routerLink="/departments">
+          <ion-icon aria-hidden="true" name="bar-chart-sharp" slot="start" class="icons"></ion-icon>
+          <ion-label>Departments</ion-label>
+        </ion-item>
+        <ion-item routerLink="/courses">
+          <ion-icon aria-hidden="true" name="school-sharp" slot="start" class="icons"></ion-icon>
+          <ion-label>Courses</ion-label>
+        </ion-item>
+        <ion-item routerLink="/registration">
+          <ion-icon aria-hidden="true" name="pencil-sharp" slot="start" class="icons"></ion-icon>
+          <ion-label>Registrations</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+
+
+
+  <ion-card id="grid_card">
+    <ion-card-header>
+      <ion-card-title>General Information <ion-icon name="pulse-sharp"></ion-icon></ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col routerLink="/posts">
+            <div class="icon"><i class='bx bx-news'></i></div>
+            <div class="Title">Timeline</div>
+          </ion-col>
+          <ion-col routerLink="/timetable">
+            <div class="icon"><i class='bx bx-calendar-alt'></i></div>
+            <div class="Title">Time Table</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col routerLink="/sports">
+            <div class="icon"><i class='bx bx-football'></i></div>
+            <div class="Title">Sports</div>
+          </ion-col>
+          <ion-col routerLink="/transport">
+            <div class="icon"><i class='bx bx-bus-school' ></i></div>
+            <div class="Title">Transport</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+  
+  
+</ion-content>

@@ -1,0 +1,9 @@
+ion-tabs {
+    --ion-tab-bar-background: #ffffff;--border-color: transparent;
+}
+ion-tab-button.tab-selected ion-icon {
+    color: indigo;
+}
+ion-tab-button {
+    --color-selected: indigo;
+}

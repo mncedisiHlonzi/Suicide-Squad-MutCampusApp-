@@ -1,0 +1,7 @@
+{
+  "name": "MutCampusApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
