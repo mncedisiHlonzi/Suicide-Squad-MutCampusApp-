@@ -1,12 +1,199 @@
 ion-header {
-    ion-toolbar {
-        --ion-toolbar-background: #ffffff;
-        color: #000;
-        font-weight: bold;
-        box-shadow: none;
-    }
+  ion-toolbar {
+      --ion-toolbar-background: #ffffff;
+      color: #000;
+      font-weight: bold;
+      box-shadow: none;
   }
-  
-  ion-content {
-    --ion-background-color: #ffffff;
-  }
+}
+
+ion-content {
+  --ion-background-color: #ffffff;
+}
+
+/* Styles for the ion-header */
+ion-header {
+  --background: #ffffff;
+  --border-color: #ccc;
+}
+
+ion-toolbar {
+  --background: #f8f9fa;
+  --border-color: #dee2e6;
+}
+
+ion-title {
+  --color: #333333;
+  font-weight: bold;
+}
+
+/* Styles for ion-buttons and ion-icon */
+ion-buttons ion-button {
+  --background: transparent;
+  --color: indigo;
+}
+
+ion-buttons ion-button ion-icon {
+  font-size: 1.5em;
+}
+
+/* Styles for ion-content */
+ion-content {
+  --background: #f4f4f9;
+  padding: 10px;
+}
+
+/* Styles for ion-card */
+ion-card {
+  margin: 20px 0;
+  --background: #ffffff;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+ion-card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+
+/* Styles for ion-card-header */
+ion-card-header {
+  padding: 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+ion-card-title {
+  --color: #333333;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  --color: #6c757d;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* Styles for ion-card-content */
+ion-card-content {
+  padding: 16px;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+ion-card-content h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+ion-card-content p {
+  margin: 10px 0;
+}
+
+ion-card-content a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+ion-card-content a:hover {
+  text-decoration: underline;
+}
+
+.profile {
+  height: 100%;
+  width: 300px;
+  display: flex;
+}
+
+.profile-frm {
+  height: 100%;
+  width: 46px;
+  margin-left: 5px;
+  background: white;
+}
+
+.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-top: 3px;
+}
+
+.profile-name{
+  height: 100%;
+  width: 170px;
+  margin: 10px;
+  background: white;
+  align-items: center;
+}
+
+/* Style for the reaction container */
+.reaction {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px; /* Adjust margin as needed */
+  color: indigo;
+}
+
+/* Style for individual reaction buttons */
+.reaction .like,
+.reaction .comment {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for ion-buttons within the reactions */
+.reaction ion-button {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+/* Optional: Style for ion-icons within the reactions */
+.reaction ion-icon {
+  font-size: 24px; /* Adjust icon size as needed */
+  color: var(--ion-color-primary, #3880ff); /* Adjust color as needed */
+}
+
+ion-card-content {
+  border: 1px solid indigo;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 5px;
+  max-width: 600px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+ion-card-content p {
+  margin: 0 0 10px;
+}
+
+ion-card-content .more-text {
+  display: none;
+}
+
+.read-more {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.image-container img {
+  width: 48%;
+  border-radius: 8px;
+}
+
+
+
