@@ -1,0 +1,32 @@
+<ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" class="center-popover">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-list lines="none" id="popoverlist">
+        <ion-item>
+          <ion-icon aria-hidden="true" name="person-sharp" slot="start" class="popover-icons"></ion-icon>
+          <ion-label>Student</ion-label>
+          <ion-button slot="end" shape="round" (click)="navigateToLogin('student')">
+            <ion-icon name="enter-outline" slot="end"></ion-icon>
+            Login
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon aria-hidden="true" name="person-sharp" slot="start" class="popover-icons"></ion-icon>
+          <ion-label>SRC Office</ion-label>
+          <ion-button slot="end" shape="round" (click)="navigateToLogin('src')">
+            <ion-icon name="enter-outline" slot="end"></ion-icon>
+            Login
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-icon aria-hidden="true" name="person-sharp" slot="start" class="popover-icons"></ion-icon>
+          <ion-label>MUT Office</ion-label>
+          <ion-button slot="end" shape="round" (click)="navigateToLogin('mut')">
+            <ion-icon name="enter-outline" slot="end"></ion-icon>
+            Login
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
