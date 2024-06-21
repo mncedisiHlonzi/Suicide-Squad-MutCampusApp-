@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header style="--background: indigo;" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button default-href="#"></ion-back-button>
@@ -11,91 +11,47 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">faculties</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-
-
-  <ion-card>
-    <img alt="Mangosuthu University of Technolgy Student Housing" src="../../assets/images/MUT2.png"/>
+  <ion-card class="custom-card">
     <ion-card-header>
-      <ion-card-title>Student Housing</ion-card-title>
+      <ion-card-title style="color: transparent;">MUT Faculties</ion-card-title>
     </ion-card-header>
-  
-    <ion-card-content>
-      <p>The Student Housing Unit’s mission is to provide a home-away-from-home environment. Each residence hall offers an opportunity for students to meet other students from diverse backgrounds and develop a sense of community within their own residence. The unit supports the core functions of MUT namely teaching and learning; research and community engagement by providing an environment that is conducive to living and learning. The Unit subscribes to the concept of diversity and multiculturalism and respect for differences within the student body in accordance with the University’s vision, mission and core values. While each residence at MUT has a unique design, features and amenities, all residences provide reasonable quality accommodation, facilities, and resources. Both on-campus and off-campus student residences offer similar access and control systems, to ensure that all students are safe. All student residences have established governance, a formal management structure, as well as basic and reasonable accommodation that is conducive to living and learning.</p>
-      <br/>
-      <h3>Residences</h3>
-      <p>The university has over forty residences, on the main campus and in and around Durban city centre.</p>
-      <br/>
-      <h3>Rooms</h3>
-      <p>Most of the rooms in the residences are double occupancy. However, there are some singles, triples, quads, and a few rooms designed for five people. Each room is equipped with a twin-sized bed, dresser, closet, desk and chair for each occupant. There is also Wi-Fi connectivity. While amenities vary somewhat from building to building, they generally include kitchens with microwaves, laundry rooms, TV and study lounges, and meeting areas.</p>
+    <ion-card-content style="color: transparent;">
+      Explore our diverse faculties including Engineering, Management Science, and Natural Science.
     </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <img alt="Governance Structure" src="../../assets/images/slide-2.png"/>
-    <ion-card-header>
-      <ion-card-title>Governance Structure</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      
-      <h3>Wardens</h3>
-      <p>All residences have a professional warden who ensures that the residences is properly run and is a safe place for the students. 
-
-        The warden also provides creative, social, educational, sports and cultural programmes to the students. The warden works with the House Committees in all residential programmes. Together, they are responsible for the following: ·          
-        
-        Attending to student well-being
-        Attending to student queries
-        Being the first line of communication in all
-        Offering assistance during student programmes/functions </p>
-      <br/>
-      <h3>Residence Assistants </h3>
-      <p>All residences have Residence Assistants (RAs) whose primary role is to help students in the promotion of the out of classroom and residence life programmes and activities. They are full time students who are selected on the basis of their previous developmental role in student activities. </p>
-      <br>
-
-      <h3>House Committees</h3>
-      <p>House Committee members are elected annually by students in their respective residences. They represent students’ views within the student residence management structure. Each residence has a committee of eight House Committee members who work closely with RAs in organising extra-mural activities.</p>
-      <br>
-
-      <h3>Floor Representatives</h3>
-      <p>Each floor in each residence has a Floor Representative (floor reps) who works closely with House Committee members in channelling students views about their living spaces, particularly on maintenance issues.</p>
-    </ion-card-content>
+    <ion-button id="card-button" shape="round">
+      Faculties Information
+      <ion-icon slot="end" name="checkmark-done-sharp"></ion-icon>
+    </ion-button>
   </ion-card>
 
 
-  <ion-card>
-  <img alt="Facilities and Services" src="../../assets/images/15.png"/>
-  <ion-card-header>
-    <ion-card-title>Facilities and Services</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
- 
-    <p>All residences have washing/laundry facilities available within residences.
-      All our residences have study rooms designed for group discussion as well as individual need.
-      Eight of our leased residences have computer facilities with 24 hour access to the internet, which were installed to assist students in doing their academic activities, while all other residences have access to wireless internet.
-      On-campus residences are disabled friendly residences and they have a computer laboratory that is designed for their specific needs.
-      All our residences have TV rooms which are open 24 hours a day and have DSTV channels.
-      All residences have security personnel who ensure the safety of students and have cleaning staff who keep the residence in an acceptable hygiene standard.
-      All students who reside in external residences are transported by the University contracted bus services who pick up students at the residence entrances and drop them at the campus entrances.</p>
-    <br>
-    <h3>RESIDENCE REGISTRATION AND APPLICATION</h3>
-    <p>Residence application and registration takes place in accordance with the Student Housing Policy which is available on the university website.  All first-year applicants are advised to apply through the Central Applications Office (CAO <a href="https://www.cao.ac.za/">–https://www.cao.ac.za/</a>) as spaces will be allocated to those who applied through CAO and followed the necessary processes.</p>
-    <br>
-    <h3>Have any questions?</h3>
-    <p>031 907 7395</p>
-    <br>
-    <h3>Open Mon – Fri</h3>
-    <p>08:00 – 16:00</p>
-    <br>
-    <h3>Need some help?</h3>
-    <p><a href="housing@mut.ac.za"></a>housing&#64;mut.ac.za</p>
-  </ion-card-content>
-</ion-card>
-
+  <ion-card id="grid_card">
+    <ion-card-title>Explore Faculties <ion-icon class="dep_head" name="pulse-sharp"></ion-icon></ion-card-title>
+  
+    
+      <ion-grid>
+        <ion-row>
+          <ion-col routerLink="/engineering" class="Engineering">
+            Faculty of Engineering
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col routerLink="/management" class="Management">
+            Faculty of Management Sciences
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col routerLink="/natural" class="Natural">
+            Faculty of Natural Sciences
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+  </ion-card>
+  
 </ion-content>
