@@ -1,248 +1,80 @@
-<ion-header [translucent]="true">
+
+<ion-header class="ion-no-border" style="--background: indigo;" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
-    <ion-title>Timeline</ion-title>
+    <ion-title>Announcements</ion-title>
     <ion-buttons slot="end">
-      <ion-button> <ion-icon name="newspaper-sharp"></ion-icon> </ion-button>
+      <ion-button>
+        <ion-icon name="newspaper-sharp"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">posts</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-
-  <ion-card>
-    <ion-card-header>
-        <div class="profile">
-          <div class="profile-frm">
-              <div class="profile-image">
-                  <img src="..\..\assets\icon\srcadimn.png">
-              </div>
-          </div>
-          <div class="profile-name">
-              <ion-card-title>SRC Admin</ion-card-title>
-          </div>
-      </div>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <p>10 MAY 2024</p>
-      <p><strong>Urgent communique</strong></p>
-      <p>ALLOWANCES</p>
-      <p>APRIL NORRACO PAYMENTS...</p>
-      <span class="more-text">
-          <p>The SRC was compiling a list of students who are having issues accessing allowances through their Norraco app as they had requested a statistic with these students. The list has been sent and we’re waiting a confirmation date as to when they will be on campus to assist this group of students.</p>
-          <p>OUTSTANDING APRIL & MAY ALLOWANCES</p>
-          <p>There is a list that was being compiled by Financial aid of students who did not receive their April and May allowances (both allowances or April allowances) as the institution does not have their details on the payroll list that they must make. This list has also been sent to NSFAS to verify whether if NSFAS has not defunded these students and if not why are they not on the list. The list is called an exception list, and feedback will be provided upon response from NSFAS and should there be a positive feedback they will receive all their allowances.</p>
-          <p>TRAVELING ALLOWANCES</p>
-          <p>The SRC is pleased to announce that Traveling Allowances will be injected today. A number of 675 students will be paid today their traveling allowances.</p>
-          <p>DELETING OF MODULES</p>
-          <p>The SRC would like to remind all annual students who wish to delete modules to do so before following closing date</p>
-          <p>Date: 23 May 2024</p>
-          <p>SPORT DAY TOURNAMENT</p>
-          <p>The SRC will be hosting its first Sport Day Tournament.</p>
-          <p>All Sport codes are therefore requested to finalize their registration before 13 May 2024, 12:00.</p>
-          <p>A meeting with all team managers has been scheduled to take place on 13 May 2024. All representatives are required to be present.</p>
-          <p>Venue: TBC<br>Time: 14:00<br>Purpose: Sport Tournament and conducting of the draw</p>
-          <p>For more inquiries kindly contact the SRC Sport Officer: Zenzele Mhlongo 064 725 9862</p>
-          <p>BUS TIME TABLE</p>
-          <p>After robust engagements and deliberations with the University Management, the SRC led EFFSC is pleased to announce that we have managed to champion the issue of buses by having additional traveling slots.</p>
-          <p>As an SRC that is led by the an organization that promotes academic excellence, we have also managed to get buses to operate on weekends as we saw the importance of utilizing these 2 extra days.</p>
-          <p>Kindly find the revised bus time table</p>
-          <p>Weekdays</p>
-          <p>From Res To MUT</p>
-          <p>07:00<br>08:00<br>09:00<br>10:30<br>12:30<br>15:00</p>
-          <p>Back To Res</p>
-          <p>10:00<br>12:00<br>14:00<br>17:00<br>19:00<br>21:00</p>
-          <p>Saturday</p>
-          <p>From Res</p>
-          <p>07:00<br>08:00</p>
-          <p>Back to Res</p>
-          <p>13:00<br>16:30</p>
-          <p>Sunday</p>
-          <p>From Res</p>
-          <p>08:00</p>
-          <p>Back to Res</p>
-          <p>14:30</p>
-          <p>Issued on behalf of the SRC<br>Secretary General</p>
-      </span>
-      <span class="read-more" onclick="toggleReadMore()">Read More</span>
-    </ion-card-content>
-    <script>
-        function toggleReadMore() {
-          const moreText = document.querySelector('.card-content .more-text');
-          const readMore = document.querySelector('.read-more');
-
-          if (moreText.style.display === 'none' || moreText.style.display === '') {
-              moreText.style.display = 'inline';
-              readMore.textContent = 'Read Less';
-          } else {
-              moreText.style.display = 'none';
-              readMore.textContent = 'Read More';
-          }
-        }
-    </script>
-    
-    <div class="reaction">
-      <div class="like">
-        <ion-button fill="clear"><ion-icon name="thumbs-up-outline"></ion-icon></ion-button>
+  <div *ngIf="posts.length > 0; else noPosts" class="content">
+    <div *ngFor="let post of posts" class="posts">
+      <div class="post_header">
+        <div class="person">
+          <img [src]="post.profile_picture || '../../assets/images/profil.png'" alt="person">
+        </div>
+        <div class="person_details">
+          <div class="name">{{ post.office }}</div>
+          <div class="time">{{ post.created_at | dateAgo }} <span>•</span> <ion-icon name="trending-down-sharp"></ion-icon></div>
+        </div>
       </div>
 
-      <div class="comment">
-        <ion-button fill="clear"><ion-icon name="chatbox-outline"></ion-icon></ion-button>
+      <div class="text">
+        <p>{{ post.posts }}</p>
+      </div>
+
+      <div class="image" *ngIf="post.image_path">
+        <img [src]="post.image_path" alt="post image">
+      </div>
+
+      <div class="post_footer">
+        <ion-button class="like_button" shape="round" size="default" (click)="likePost(post.postId)">
+          <ion-icon style="font-weight: bold;" slot="start" name="heart-outline"></ion-icon>
+          {{ post.likes > 0 ? post.likes : '' }}
+        </ion-button>
+        <ion-button id="open-comments-{{ post.postId }}" class="comment_button" shape="round" size="default" (click)="openComments(post.postId)">
+          <ion-icon style="font-weight: bold;" slot="start" name="chatbubble-outline"></ion-icon>
+          {{ post.comment_count > 0 ? post.comment_count : '' }}
+        </ion-button>
       </div>
     </div>
-  </ion-card>
-  
-  <ion-card>
-    <ion-card-header>
-        <div class="profile">
-          <div class="profile-frm">
-              <div class="profile-image">
-                  <img src="..\..\assets\icon\manegementadimn.jpeg">
-              </div>
-          </div>
-          <div class="profile-name">
-              <ion-card-title>Manegements Admin</ion-card-title>
-          </div>
-      </div>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <p><strong>Calling all future leaders!</strong></p>
 
-      <p>This Africa Day, Mangosuthu University of Technology & UL are coming together to build a brighter future for Africa. Join us for insights from young entrepreneurs, innovators, and cultural leaders!</p>
-
-      <span class="more-text">
-        <p>Date: May 24th, 2024 </p>
-        <p>Time: 10:00 AM - 11:30 AM (Open to all) & 12:00 PM - 2:00 PM (By invitation only)</p> 
-        <p>Venue: OLT Main Campus</p><br>
-  
-        <p>What's on the agenda?</p>
-  
-        <p>Intra-Africa cultural discussion: Hear youth perspectives on MUT Radio -MUT Campus Radio! &#64;topfans
-         <br>African vibes at Anniversary Lane: Dance competition - KZN vs Limpopo!</p>
-        <p><br>Taking pride in African cuisine: A delicious food experience.</p>
-  
-        <p>Thought leadership talks: Learn about student entrepreneurship, innovation, intercultural communication, and being globally competitive.
-          <br>Dress code: Daring African attire! ‍</p>
-  
-        <p><br>RSVP for the closed session (12:00 PM - 2:00 PM): ntuli.thandeka&#64;mut.ac.za by May 23rd.</p>
-  
-        <p>Don't miss this chance to shape Africa's future! #africaday #MUT #UL #BuildingTheFuture #StudentEntrepreneurship #innovations  #interculturalcommunication #GlobalCitizenship</p>  
-      </span>
-      
-      <span class="read-more" onclick="toggleReadMore()">Read More</span>
-      <img src="..\..\assets\images\media\WhatsApp Image 2024-05-23 at 12.10.15_d01fb814.jpg" alt="Manegements post ">
-
-      <script>
-        function toggleReadMore() {
-          const moreText = document.querySelector('.card-content .more-text');
-          const readMore = document.querySelector('.read-more');
-
-          if (moreText.style.display === 'none' || moreText.style.display === '') {
-              moreText.style.display = 'inline';
-              readMore.textContent = 'Read Less';
-          } else {
-              moreText.style.display = 'none';
-              readMore.textContent = 'Read More';
-          }
-        }
-    </script>
-    </ion-card-content>
-    
-
-
-    <div class="reaction">
-      <div class="like">
-        <ion-button fill="clear"><ion-icon name="thumbs-up-outline"></ion-icon></ion-button>
-      </div>
-
-      <div class="comment">
-        <ion-button fill="clear"><ion-icon name="chatbox-outline"></ion-icon></ion-button>
-      </div>
+    <ion-modal id="comments-modal" [trigger]="'open-comments-' + selectedPostId" [initialBreakpoint]="0.80" [breakpoints]="[0.80]" handleBehavior="cycle" style="--border-radius: 17px;">
+      <ng-template>
+        <ion-header class="ion-no-border" [translucent]="true" style="text-align: center; color: gray; margin-top: 20px; margin-bottom: 5px;">
+          <ion-label style="background-color: #fff; font-weight: bold;">{{ comments.length }}<span> Comments</span></ion-label>
+        </ion-header>
+        <form id="comment-form" (ngSubmit)="sendComment()">
+          <ion-textarea [(ngModel)]="newComment" name="newComment" placeholder="Add your comment in post!" spellcheck="false" required auto-grow="true"></ion-textarea>
+          <ion-button fill="clear" type="submit"><ion-icon name="send-sharp"></ion-icon></ion-button>
+        </form>
+        <ion-content class="ion-padding">
+          <ion-list class="scrollable-content" lines="none">
+            <ion-item *ngFor="let comment of comments" class="comment-item">
+              <ion-avatar aria-hidden="true" slot="start">
+                <img alt="" src="../../assets/images/tyc.jpg" />
+              </ion-avatar>
+              <ion-label>
+                <p>Mncedisi</p>
+                <h6>{{ comment.comment }}</h6>
+                <p><span>{{ comment.created_at | dateAgo }}</span></p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </div>
+  <ng-template #noPosts>
+    <div class="noPosts" style="width: 100%; height: 100vh; display: flex; background-color: #fff; align-items: center;">
+      <p style="color: #000; font-weight: 500; text-align: center; width: 100%;">Loading posts ...</p>
     </div>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-        <div class="profile">
-          <div class="profile-frm">
-              <div class="profile-image">
-                  <img src="..\..\assets\icon\transportadimn.png">
-              </div>
-          </div>
-          <div class="profile-name">
-              <ion-card-title>Transport Admin</ion-card-title>
-          </div>
-      </div>
-    </ion-card-header>
-  
-    <ion-card-content>
-      New Buses time table
-      <img src="..\..\assets\images\media\Transport-Post.jpg" alt="Transport Post">
-    </ion-card-content>
-    
-    <div class="reaction">
-      <div class="like">
-        <ion-button fill="clear"><ion-icon name="thumbs-up-outline"></ion-icon></ion-button>
-      </div>
-
-      <div class="comment">
-        <ion-button fill="clear"><ion-icon name="chatbox-outline"></ion-icon></ion-button>
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-        <div class="profile">
-          <div class="profile-frm">
-              <div class="profile-image">
-                  <img src="..\..\assets\icon\sportadimn.png">
-              </div>
-          </div>
-          <div class="profile-name">
-              <ion-card-title>Sport & Entertainment Admin</ion-card-title>
-          </div>
-      </div>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <p><strong>FINAL SPORT DAY</strong></p>
-
-      <p>The SRC led by EFFSC through the office of the capable Sport President invites you MUT students to come out in number. Tomorrow is the final day where we will see who is our champion? who will take in ? Ubani ozohamba ephethe esandleni? Find out that tomorrow UZE UNGAPHUTHELWA!!!!</p>
-      <br>
-      <p>There is an ACTIVATION tomorrow, where Amazulu FC staff will be available. Kuningi okuzokwenzeka! HEBE! USUTHU!!</p>
-      <br>
-      <p>ASIDLALENI le DISKI⚽⚽⚽🔥🔥🔥<br></p>
-
-      <p>Danko!!! Wozani Nizobona!!!</p>
-
-    <div class="image-container">
-      <img src="..\..\assets\images\media\MUTsportday-1.jpg" alt="MUT Sport day image 1">
-      <img src="..\..\assets\images\media\MUTsportday-2.jpg" alt="MUT Sport day image 2">
-    </div>
-
-    </ion-card-content>
-    
-    <div class="reaction">
-      <div class="like">
-        <ion-button fill="clear"><ion-icon name="thumbs-up-outline"></ion-icon></ion-button>
-      </div>
-
-      <div class="comment">
-        <ion-button fill="clear"><ion-icon name="chatbox-outline"></ion-icon></ion-button>
-      </div>
-    </div>
-  </ion-card>
-
+  </ng-template>
 </ion-content>
-

@@ -1,193 +1,142 @@
 ion-header {
   ion-toolbar {
-      --ion-toolbar-background: #ffffff;
-      color: #000;
-      font-weight: bold;
-      box-shadow: none;
+    --ion-toolbar-background: #fff;
+    color: #000;
+    font-weight: bold;
+    box-shadow: none;
   }
 }
 
 ion-content {
   --ion-background-color: #ffffff;
 }
-
-/* Styles for the ion-header */
-ion-header {
-  --background: #ffffff;
-  --border-color: #ccc;
+#card{
+  --background: #fff;
+  --color: gray;
+  box-shadow: none !important;
 }
 
-ion-toolbar {
-  --background: #f8f9fa;
-  --border-color: #dee2e6;
+#play{
+  --background: #fff;
+  --color: gray;
+  box-shadow: none !important;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  text-align: center;
+  align-items: center;
 }
-
-ion-title {
-  --color: #333333;
+#play .icon ion-icon{
+  font-size: 60px;
+  color: indigo;
+}
+.live{
+  display: flex;
+  height: 30px;
+  width: 60%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-radius: 7px;
+  background-color: indigo;
+}
+.live p{
+  margin-left: 10px;
+}
+#play .vol ion-icon{
+  font-size: 25px;
   font-weight: bold;
+  color: indigo;
 }
 
-/* Styles for ion-buttons and ion-icon */
-ion-buttons ion-button {
-  --background: transparent;
-  --color: indigo;
+
+
+
+
+
+
+
+
+
+ion-modal#example-modal {
+  --width: 90%;
+  margin: auto;
+  --height: fit-content;
+  --border-radius: 6px;
+  --background: #fff;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 }
 
-ion-buttons ion-button ion-icon {
-  font-size: 1.5em;
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 4px 0;
+
+  color: #aaaaaa;
 }
 
-/* Styles for ion-content */
-ion-content {
-  --background: #f4f4f9;
-  padding: 10px;
-}
-
-/* Styles for ion-card */
-ion-card {
-  margin: 20px 0;
-  --background: #ffffff;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-ion-card img {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  width: 100%;
-  height: auto;
-}
-
-/* Styles for ion-card-header */
-ion-card-header {
-  padding: 16px;
-  border-bottom: 1px solid #dee2e6;
-}
-
-ion-card-title {
-  --color: #333333;
-  font-size: 1.25em;
-  font-weight: bold;
-}
-
-ion-card-subtitle {
-  --color: #6c757d;
-  font-size: 1em;
+ion-modal#example-modal .wrapper {
   margin-bottom: 10px;
 }
 
-/* Styles for ion-card-content */
-ion-card-content {
-  padding: 16px;
-  font-size: 1em;
-  line-height: 1.6;
+.wrapper{
+  background-color: #fff;
 }
 
-ion-card-content h3 {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-ion-card-content p {
-  margin: 10px 0;
-}
-
-ion-card-content a {
-  color: indigo;
-  text-decoration: none;
-}
-
-ion-card-content a:hover {
-  text-decoration: underline;
-}
-
-/* Styling for ion-card */
-.contact-card {
-  margin: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Styling for ion-card-header */
-ion-card-header {
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
-  border-radius: 10px 10px 0 0;
-}
-
-/* Styling for ion-card-title */
-ion-card-title {
-  color: #333;
-  font-size: 1.5rem;
-  padding: 10px;
-}
-
-/* Styling for ion-card-content */
-ion-card-content {
-  padding: 10px;
-}
-
-/* Styling for ion-item */
-ion-item {
-  --padding-start: 0;
-  --padding-end: 0;
-}
-
-/* Styling for ion-icon */
-ion-icon {
-  color: indigo; /* Change color as needed */
-  margin-right: 10px;
-}
-
-/* Styling for ion-label */
-ion-label {
-  font-size: 1rem;
-  color: #000000;
-}
-
-/* Styling for last ion-item with no lines */
-ion-item:last-child {
-  --inner-padding-start: 0;
-  --inner-padding-end: 0;
-}
-
-/* Styling for ion-list with no lines */
-ion-list {
-  --background-color: white;
-  --border-width: 0;
-}
-
-/* Style for radio logo */
-.radio-logo img {
-  width: 100%; /* Adjust width as needed */
-  height: auto;
-}
-
-
-
-.radio-button {
-  margin: 5px;
-}
-
-/* Style for contact icons */
-ion-icon {
-  margin-right: 5px;
-}
-
-/* Optional: Center align ion-card titles */
-ion-card-title {
+.log{
+  background-color: indigo;
   text-align: center;
 }
 
-/* Optional: Add some padding to ion-card */
-ion-card {
-  padding: 20px;
-}
 
-/* Optional: Style for ion-content */
-ion-content {
-  --ion-safe-area-top: 20px; /* Adjust as needed */
-  --ion-safe-area-bottom: 20px; /* Adjust as needed */
-}
 
+
+
+
+
+
+
+
+#grid_card{
+  height: 400px;
+  overflow: hidden;
+  --background: #fff;
+  box-shadow: none !important;
+  border-radius: 10px;
+}
+#grid_card ion-card-content {
+  height: 90%;
+}
+#grid_card ion-card-title{
+  --color: #7a7a7a;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+ion-col {
+  margin-left: 3px;
+  margin-right: 3px;
+  height: 100px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}  
+.pod {
+  background-image: url('../../assets/images/pod.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.line {
+  background-image: url('../../assets/images/line.jpg');
+  background-size: cover;
+  background-position: center;
+}

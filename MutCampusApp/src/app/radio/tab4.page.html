@@ -1,113 +1,96 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button default-href="#"></ion-back-button>
-    </ion-buttons>
     <ion-title>Radio</ion-title>
     <ion-buttons slot="end">
       <ion-button> <ion-icon name="radio-sharp"></ion-icon> </ion-button>
     </ion-buttons>
   </ion-toolbar>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-item>
-      <div class="radio-logo">
-        <img alt="MUT radio logo" src="../../assets/images/2.png">
-      </div>
-    </ion-item>
-
-    <ion-card-header>
-      <ion-card-title>Live Radio</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      <div class="player-controls">
-        <ion-button class="radio-button" (click)="play()">Play</ion-button>
-        <ion-button class="radio-button" (click)="pause()">Pause</ion-button>
-        <ion-range id="radio-volume" min="0" max="1" step="0.1" [(ngModel)]="volume" (ionChange)="changeVolume($event)">
-          <ion-label slot="start">Volume</ion-label>
-        </ion-range>
-      </div>
-    </ion-card-content>
+  <ion-card id="card">
+    <img src="../../assets/images/mutRadio.jpg" />
   </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Radio Line Up</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>MUT Radio is an Online Campus Radio belonging to Mangosuthu University of Technology used as a tool to be a transforming, equitable, sustainable and academically excellent University of Technology anchored in communities.</p>
-      <br>
-      <h3>Monday to Friday</h3>
-      <p>07h00-10h00 : Vuk’ubangene Breakfast Show</p>
-      <p>10H00-13h00 : Hlanganani Midday Show</p>
-      <p>13h00-16h00 : The Campus Voice</p>
-      <p>13h00-16h00: The Campus Club (Friday)</p>
-      <p>16:h00-17h00: Womanity ( Thursday)</p>
-    </ion-card-content>
+  <ion-grid id="podc">
+    <ion-row>
+      <ion-col class="pod">
+        PODCASTS
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid id="lineU">
+    <ion-row>
+      <ion-col class="line">
+        LINE UP
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <ion-card-content>
-      <h3>Saturday</h3>
-      <p>08h00 :10h00 :The weekend Breakfast show</p>
-      <p>10h00-13h00 : uShuni weNgoma</p>
-      <p>13h00-15h00 : MUT Top 30</p>
-      <p>15h00 - 17h00 :The Hip Hop Chamber</p>
-    </ion-card-content>
-
-    <ion-card-content>
-      <h3>Sunday</h3>
-      <p>08h00-10h00 : The weekend Breakfast</p>
-      <p>10h:00-12h00 : Isinkwa Sokuphila</p>
-      <p>12h00-15h00 : Soulful Sunday</p>
-    </ion-card-content>
+  <ion-card id="play">
+    <div class="icon">
+      <ion-icon name="play-circle-outline"></ion-icon>
+    </div>
+    <div class="live">
+      <p>Live Stream ...</p>
+    </div>
+    <div class="time">
+      00:00
+    </div>
+    <div class="vol">
+      <ion-icon name="volume-high-outline"></ion-icon>
+    </div>
   </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>About</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>MUT Radio station is also informed by the University’s values; which are Accountability, Integrity, Respect, and Excellence. ore-or-less normal distribution of letters. making it look like readable English.</p>
-    </ion-card-content>
-  </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Contact us</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon name="call-outline"></ion-icon>
-          <ion-label>Telephone</ion-label>
-          <ion-label>031 907 7111</ion-label>
-        </ion-item>
-  
-        <ion-item>
-          <ion-icon name="logo-whatsapp"></ion-icon>
-          <ion-label>WhatsApp</ion-label>
-          <ion-label>068 160 8832</ion-label>
-        </ion-item>
-  
-        <ion-item>
-          <ion-icon name="mail-outline"></ion-icon>
-          <ion-label>Email</ion-label>
-          <ion-label>radio1&#64;mut.ac.za</ion-label>
-        </ion-item>
-  
-        <ion-item lines="none">
-          <ion-label>Follow us</ion-label>
-          <ion-icon name="logo-facebook"></ion-icon>
-          <ion-icon name="logo-twitter"></ion-icon>
-          <ion-icon name="logo-youtube"></ion-icon>
-          <ion-icon name="logo-instagram"></ion-icon>
-        </ion-item>
 
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+
+  <ion-modal
+    trigger="podc"
+    [initialBreakpoint]="0.70"
+    [breakpoints]="[0.70]"
+    handleBehavior="cycle"
+    style="--border-radius: 17px;"
+  >
+    <ng-template>
+      <ion-header>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <ion-card id="card">
+          <img src="../../assets/images/timetable.jpg" />
+          <ion-card-header>
+            <ion-card-title style="text-align: center; color: #ccc;">No Podcasts Available</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+                
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+
+  <ion-modal
+    trigger="lineU"
+    [initialBreakpoint]="0.70"
+    [breakpoints]="[0.70]"
+    handleBehavior="cycle"
+    style="--border-radius: 17px;"
+  >
+    <ng-template>
+      <ion-header>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <ion-card id="card">
+          <img src="../../assets/images/timetable.jpg" />
+          <ion-card-header>
+            <ion-card-title style="text-align: center; color: #ccc;">Line Up Comming Soon</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>
