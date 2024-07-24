@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-tab4',
@@ -7,9 +7,13 @@ import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angula
 })
 export class Tab4Page implements OnInit, AfterViewInit {
   @ViewChild('audioElement') audioElementRef!: ElementRef<HTMLAudioElement>;
+  @ViewChildren('audioElement') audioElementRefs!: QueryList<ElementRef<HTMLAudioElement>>;
   private audioElement!: HTMLAudioElement;
   private _volume: number = 0.5;
+  private _isMuted: boolean = false;
+  currentTime: string = '00:00';
   isPlaying = false;
+  radioUrl: string = 'https://edge.iono.fm/xice/153_medium.aac?ref=https%3A%2F%2Fiono.fm%2Fs%2F153&adToken=';
 
   get volume(): number {
     return this._volume;
@@ -22,44 +26,98 @@ export class Tab4Page implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(private elementRef: ElementRef) {}
+  get isMuted(): boolean {
+    return this._isMuted;
+  }
 
-  togglePlayPause() {
-    this.isPlaying = !this.isPlaying;
-    if (this.isPlaying) {
-      this.play();
-    } else {
-      this.pause();
+  set isMuted(value: boolean) {
+    this._isMuted = value;
+    if (this.audioElement) {
+      this.audioElement.muted = this._isMuted;
     }
   }
+
+  constructor() {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.audioElement = this.audioElementRef.nativeElement;
-    this.initAudio();
+    if (this.audioElementRef) {
+      this.audioElement = this.audioElementRef.nativeElement;
+      this.initAudio();
+    }
   }
 
   initAudio(): void {
-    this.audioElement.src = 'https://iono.fm/s/153'; // Replace with the actual MUT Radio stream URL
-    this.audioElement.load();
+    if (this.audioElement) {
+      this.audioElement.src = this.radioUrl;
+      this.audioElement.volume = this._volume;
+      this.audioElement.muted = this._isMuted;
+
+      this.audioElement.addEventListener('timeupdate', () => {
+        this.updateTime();
+      });
+      this.audioElement.addEventListener('canplay', () => {
+        console.log('Audio can play');
+      });
+      this.audioElement.addEventListener('error', (event) => {
+        console.error('Error event:', event);
+      });
+    }
   }
 
   play(): void {
-    this.audioElement.play();
+    if (this.audioElement) {
+      this.isPlaying = true;
+      this.audioElement.play().catch(error => {
+        console.error('Error playing audio:', error);
+      });
+    }
   }
 
   pause(): void {
-    this.audioElement.pause();
+    if (this.audioElement) {
+      this.isPlaying = false;
+      this.audioElement.pause();
+    }
+  }
+
+  togglePlayPause(): void {
+    if (this.isPlaying) {
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
+
+  toggleMute(): void {
+    this.isMuted = !this.isMuted;
+    if (this.audioElement) {
+      this.audioElement.muted = this.isMuted;
+    }
   }
 
   volumeChange(event: CustomEvent): void {
-    const value = (event.detail.value as number) / 100;
+    const value = (event.detail.value as number);
     this.volume = value;
+  }
+
+  updateTime(): void {
+    if (this.audioElement) {
+      const minutes = Math.floor(this.audioElement.currentTime / 60);
+      const seconds = Math.floor(this.audioElement.currentTime % 60);
+      this.currentTime = `${this.pad(minutes)}:${this.pad(seconds)}`;
+    }
+  }
+
+  pad(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
   }
 
   seek(event: CustomEvent): void {
     const value = (event.detail.value as number);
-    this.audioElement.currentTime = value;
+    if (this.audioElement) {
+      this.audioElement.currentTime = value;
+    }
   }
 }

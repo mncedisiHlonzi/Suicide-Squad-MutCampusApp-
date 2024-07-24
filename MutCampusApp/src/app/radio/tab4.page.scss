@@ -9,6 +9,10 @@ ion-header {
 
 ion-content {
   --ion-background-color: #ffffff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
 }
 #card{
   --background: #fff;
@@ -26,6 +30,7 @@ ion-content {
   text-align: center;
   align-items: center;
 }
+
 #play .icon ion-icon{
   font-size: 60px;
   color: indigo;
@@ -132,4 +137,22 @@ ion-col {
   background-image: url('../../assets/images/line.jpg');
   background-size: cover;
   background-position: center;
+}
+
+#podcast-image {
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  margin-bottom: 10px; 
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px; 
+}
+.action {
+
+  display: block;
+}
+
+.action ion-button{
+  background: indigo;
+  display: block;
 }

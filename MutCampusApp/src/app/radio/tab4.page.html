@@ -29,15 +29,16 @@
 
   <ion-card id="play">
     <div class="icon">
-      <ion-icon id="audioElement" [name]="isPlaying ? 'pause-circle-outline' : 'play-circle-outline'" (click)="togglePlayPause()"><audio  #audioElement controls></audio></ion-icon>
+      <ion-icon [name]="isPlaying ? 'pause-circle-outline' : 'play-circle-outline'" (click)="togglePlayPause()"></ion-icon>
     </div>
-    
+    <audio #audioElement hidden></audio>
     <div class="live">
       <p>Live Stream ...</p>
     </div>
-    <div class="time">00:00</div>
+    <div class="time">{{currentTime}}</div>
     <div class="vol">
-      <ion-icon name="volume-high-outline"></ion-icon>
+      <ion-icon [name]="isMuted ? 'volume-mute-outline' : 'volume-high-outline'" (click)="toggleMute()"></ion-icon>
+      <!--<ion-range min="0" max="1" step="0.1" [(ngModel)]="volume" (ionChange)="volumeChange($event)"></ion-range>-->
     </div>
   </ion-card>
 
@@ -51,16 +52,28 @@
     <ng-template>
       <ion-header></ion-header>
       <ion-content class="ion-padding">
-        <ion-card id="card">
-          <img src="../../assets/images/timetable.jpg" />
+<!-- Podcasts
+        
+        <ion-card id="card" *ngFor="let podcast of podcasts; let i = index">
+          <img id="podcast-image" [alt]="podcast.title" [src]="podcast.imageUrl" />
           <ion-card-header>
-            <ion-card-title style="text-align: center; color: #ccc;">No Podcasts Available</ion-card-title>
+            <ion-card-title>{{ podcast.title }}</ion-card-title>
+            <ion-card-subtitle>{{ podcast.subtitle }}</ion-card-subtitle>
           </ion-card-header>
-        </ion-card>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-
+        
+          <ion-card-content>
+            
+            <div *ngFor="let podcast of podcasts; let i = index">
+              <ion-icon [name]="podcast.isPlaying ? 'pause-circle-outline' : 'play-circle-outline'" (click)="togglePlayPausePod(i)"></ion-icon>
+              <ion-icon [name]="podcast.isMuted ? 'volume-mute-outline' : 'volume-high-outline'" (click)="toggleMutePod(i)"></ion-icon>
+              <button (click)="sharePodcast(i)">Share</button>
+              <button (click)="downloadPodcast(i)">Download</button>
+            </div>
+          </ion-card-content>
+        </ion-card> -->
+         
+        
+        
   <ion-modal
     trigger="lineU"
     [initialBreakpoint]="0.70"
