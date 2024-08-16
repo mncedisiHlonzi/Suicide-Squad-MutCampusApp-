@@ -10,3 +10,57 @@ ion-header {
   ion-content {
     --ion-background-color: #ffffff;
   }
+
+  ion-header {
+    ion-toolbar {
+      --ion-toolbar-background: #fff;
+      color: #000;
+      font-weight: bold;
+      box-shadow: none;
+    }
+  }
+  
+  ion-content {
+    --ion-background-color: #ffffff;
+  }
+  
+  .custom-card {
+    --background: url('../../assets/images/faculties.jpg') center/cover;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  .dep_head {
+    color: indigo;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  ion-card {
+    --background: indigo;
+    --color: #fff;
+    box-shadow: none !important;
+  }
+  
+  ion-card-content {
+    --color: #fff;
+  }
+  
+  ion-col {
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #fff;
+  }
