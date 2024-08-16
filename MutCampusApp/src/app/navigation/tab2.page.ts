@@ -1,94 +1,88 @@
-import { Component, OnInit } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 declare var google: any;
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
+  styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit {
-  map: any;
-  userMarker: any;
-  buildings: Array<{ name: string, lat: number, lng: number }> = [
-    { name: 'Student Center', lat: -29.970, lng: 30.911 },
-    { name: 'D1 Lab', lat: -29.971, lng: 30.912 },
-    { name: 'Semme Hall', lat: -29.972, lng: 30.913 },
-    { name: 'Main Gate', lat: -29.973, lng: 30.914 },
-    { name: 'SRC Office', lat: -29.974, lng: 30.915 },
-    { name: 'North Campus', lat: -29.975, lng: 30.916 },
-  ];
+export class Tab2Page {
+  @ViewChild('mapIframe') mapIframe?: ElementRef;
+  @ViewChild('searchInput') searchInput?: ElementRef;
+  @ViewChild('list') list?: ElementRef;
 
-  constructor(private geolocation: Geolocation) {}
+  private map: any;
+  private directionsService: any;
+  private directionsRenderer: any;
 
-  ngOnInit() {
+  constructor(private modalController: ModalController) { }
+
+  ngAfterViewInit() {
+    this.mapIframe?.nativeElement;
     this.initMap();
   }
 
   initMap() {
-    const location = { lat: -29.969804427818424, lng: 30.910702475142774 };
-    this.map = new google.maps.Map(document.getElementById("map"), {
-      center: location,
+    const mapElement = this.mapIframe?.nativeElement;
+    this.map = new google.maps.Map(mapElement, {
+      center: { lat: -29.969804427818424, lng: 30.910702475142774 },
       zoom: 15,
     });
 
-    this.geolocation.getCurrentPosition().then((position) => {
-      const userLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-
-      this.userMarker = new google.maps.Marker({
-        position: userLocation,
-        map: this.map,
-        title: "You are here",
-      });
-
-      this.map.setCenter(userLocation);
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer({
+      map: this.map,
     });
   }
 
-  findBuilding() {
-    const request = {
-      query: this.buildings,
-      location: this.map.getCenter(),
-      radius: '500',
-    };
+  searchForBuilding(searchQuery: string) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: searchQuery }, (results, status) => {
+      if (status === 'OK') {
+        const buildingLocation = results[0].geometry.location;
 
-    const service = new google.maps.places.PlacesService(this.map);
-    service.findPlaceFromQuery(request, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-        const place = results[0];
-        const placeLocation = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng(),
-        };
-
-        const directionsService = new google.maps.DirectionsService();
-        const directionsRenderer = new google.maps.DirectionsRenderer();
-        directionsRenderer.setMap(this.map);
-
-        const directionsRequest = {
-          origin: this.userMarker.getPosition(),
-          destination: placeLocation,
-          travelMode: google.maps.TravelMode.WALKING,
-        };
-
-        directionsService.route(directionsRequest, (response, status) => {
+        // Calculate the directions
+        this.directionsService.route({
+          origin: this.getUserLocation(),
+          destination: buildingLocation,
+          travelMode: 'walking',
+        }, (response, status) => {
           if (status === 'OK') {
-            directionsRenderer.setDirections(response);
+            this.displayDirections(response);
+            this.directionsRenderer.setDirections(response);
+            
           }
         });
-
-        new google.maps.Marker({
-          position: placeLocation,
-          map: this.map,
-          title: place.name,
-        });
-      } else {
-        alert("Building not found!");
       }
+    });
+  }
+
+  async getUserLocation() {
+    try {
+      const position = await new Promise<GeolocationPosition>((resolve, reject) =>
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+      );
+      return {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+    } catch (error) {
+      console.error('Error getting user location:', error);
+      return Promise.reject('Unable to get user location');
+    }
+  }
+  
+  
+
+  displayDirections(response: any) {
+    const directionsList = response.routes[0].legs[0].steps;
+    this.list && (this.list.nativeElement.innerHTML = '');
+    directionsList.forEach((step) => {
+      const instruction = document.createElement('p');
+      instruction.textContent = step.instructions;
+      this.list?.nativeElement.appendChild(instruction);
     });
   }
 }
