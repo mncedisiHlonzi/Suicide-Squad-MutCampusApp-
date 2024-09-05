@@ -6,7 +6,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-segment color="light" [value]="selectedDay" (ionChange)="onSegmentChange($event)">
+  <!-- Scrollable Segment -->
+  <ion-segment scrollable color="light" [value]="selectedDay" (ionChange)="onSegmentChange($event)">
     <ion-segment-button value="Monday"><ion-label>Monday</ion-label></ion-segment-button>
     <ion-segment-button value="Tuesday"><ion-label>Tuesday</ion-label></ion-segment-button>
     <ion-segment-button value="Wednesday"><ion-label>Wednesday</ion-label></ion-segment-button>
@@ -16,6 +17,7 @@
     <ion-segment-button value="Sunday"><ion-label>Sunday</ion-label></ion-segment-button>
   </ion-segment>
 
+  <!-- Events List -->
   <ion-list>
     <ng-container *ngIf="(events[selectedDay] || []).length > 0; else noEvents">
       <ion-item lines="full" *ngFor="let event of events[selectedDay]; let i = index">
@@ -24,17 +26,15 @@
           <p>{{ event.taskName }}</p>
           <p>{{ event.taskDescription }}</p>
         </ion-label>
-        <!-- Edit icon -->
         <ion-button fill="clear" slot="end" (click)="editEvent(event, i)">
           <ion-icon name="pencil-outline"></ion-icon>
         </ion-button>
-        <!-- Delete icon -->
         <ion-button fill="clear" slot="end" (click)="deleteEvent(event)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </ion-item>
     </ng-container>
-
+    
     <ng-template #noEvents>
       <ion-item lines="full">
         <ion-label>
@@ -44,11 +44,14 @@
     </ng-template>
   </ion-list>
 
+  <!-- Floating Add Event Button -->
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button color="primary" (click)="openModal()">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
 
   <!-- Main Modal for Adding Event -->
   <ion-modal #mainModal>

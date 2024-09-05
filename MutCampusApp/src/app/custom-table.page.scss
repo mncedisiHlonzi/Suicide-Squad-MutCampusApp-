@@ -1,36 +1,79 @@
-ion-content {
-    --background: #ffffff; /* Set background to white */
+ion-header {
+  --background: #4B0A44;
+  --color: white;
+}
+
+ion-toolbar {
+  --background: #4B0A44;
+}
+
+ion-segment {
+  --indicator-color: #4B0A44;
+  --color-checked: #4B0A44;
+  --color: #4B0A44;
+  --background: white;
+  --scrollbar-color: #4B0A44; /* Color for scrollbar */
+  --border-radius: 0;
+}
+
+ion-segment-button {
+  ion-label {
+    font-weight: bold;
+    color: #4B0A44;
   }
-  
-  ion-header {
-    --background: #4B0A44; /* Maroon background color */
-    --color: white; /* White text color */
+
+  &.segment-activated {
+    --background: #F1F1F1;
+    color: #4B0A44;
   }
-  
-  ion-toolbar {
-    --background: #4B0A44; /* Same maroon background color */
-  }
-  
-  ion-segment {
-    --indicator-color: #4B0A44; /* Maroon indicator color */
-    --color-checked: #4B0A44; /* Maroon color for the active segment */
-    --color: #4B0A44; /* Maroon color for the segment text */
-    --background: white; /* White background for the segment */
-    --border-radius: 0; /* Remove border-radius for a cleaner look */
-    --box-shadow: none; /* Remove box-shadow */
-  }
-  
-  ion-segment-button {
-    ion-label {
-      font-weight: bold;
-      color: #4B0A44; /* Maroon color for the text */
-    }
-  
-    &.segment-activated {
-      --background: #F1F1F1; /* Light grey background for the active segment */
-      color: #4B0A44; /* Maroon color for the active text */
-    }
-  }
+}
+
+ion-list {
+  margin-top: 10px;
+}
+
+ion-item {
+  --background: white;
+  --border-color: #F1F1F1;
+  --color: #4B0A44;
+}
+
+ion-icon {
+  color: #4B0A44;
+}
+
+ion-fab-button {
+  --background: #4B0A44;
+  --color: white;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+p {
+  color: #8A8A8A;
+}
+
+ion-modal::part(content) {
+  --background: white;
+  --border-radius: 20px;
+  --padding: 16px;
+}
+
+ion-modal ion-header {
+  background-color: #4B0A44;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: white;
+  text-align: center;
+}
+
+ion-modal ion-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
   
   ion-list {
     margin-top: 10px;
